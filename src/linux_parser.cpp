@@ -357,7 +357,7 @@ string LinuxParser::Command(int pid) {
 
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Ram(int pid[[maybe_unused]]) {     
+string LinuxParser::Ram(int pid) {     
   std::ifstream statmFile("/proc/" + std::to_string(pid) + "/statm");
     if (!statmFile.is_open()) {
         return "-1";
@@ -380,7 +380,7 @@ string LinuxParser::Ram(int pid[[maybe_unused]]) {
 
 // TODO: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Uid(int pid[[maybe_unused]]) { 
+string LinuxParser::Uid(int pid) { 
       std::ifstream statusFile("/proc/" + std::to_string(pid) + "/status");
     if (!statusFile.is_open()) {
         return "-1";
@@ -403,7 +403,7 @@ string LinuxParser::Uid(int pid[[maybe_unused]]) {
 
 // TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::User(int pid[[maybe_unused]]) { 
+string LinuxParser::User(int pid) { 
       // Step 1: Read the UID from the /proc/<PID>/status file
     std::ifstream statusFile(kProcDirectory + std::to_string(pid) +kStatusFilename);
     if (!statusFile.is_open()) {
@@ -453,7 +453,7 @@ string LinuxParser::User(int pid[[maybe_unused]]) {
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid[[maybe_unused]]) { 
+long LinuxParser::UpTime(int pid) { 
 
       std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
 
