@@ -6,6 +6,7 @@
 #include <map>
 #include <chrono>
 #include "linux_parser.h"
+#include "iostream"
 
 using std::stof;
 using std::string;
@@ -126,6 +127,7 @@ std::vector<std::string> splitString(const std::string& input, char delimiter) {
 long LinuxParser::Jiffies() {
       std::ifstream statFile(kProcDirectory + kStatFilename);
     if(!statFile.is_open()) {
+        std::cout<<"Couldn't open " << kProcDirectory + kStatFilename;
         return -1;
     }
     std::string line;
@@ -138,6 +140,7 @@ long LinuxParser::Jiffies() {
         try {
             jiffies += std::stol(tokens[i]);
         } catch (const std::exception& e) {
+            std::cout << e.what() << std::endl;
             return -1;
         }
     }
