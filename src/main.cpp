@@ -7,7 +7,7 @@ int main() {
   System system;
   // std::cout<<"Welcome to the Curses Display";
   // std::cout<<system.Kernel();
-  NCursesDisplay::Display(system);
+  // NCursesDisplay::Display(system);
   // for (int i=0; i < system.Processes().size(); i++){
   //   auto process = system.Processes()[i];
   //   std::cout<<process.Command()<<std::endl;
@@ -20,7 +20,7 @@ int main() {
   // }
   // std::cout<<"CPU Utilization "<<system.Cpu().Utilization()<<std::endl;
   // std::cout<<"Kernel "<<system.Kernel()<<std::endl;
-  // std::cout<<"MemoryUtilization "<<system.MemoryUtilization()<<std::endl;
+  std::cout<<"MemoryUtilization "<<system.MemoryUtilization()<<std::endl;
   // std::cout<<"OperatingSystem "<<system.OperatingSystem()<<std::endl;
   // std::cout<<"Running Processes "<<system.RunningProcesses()<<std::endl;
   // std::cout<<"TotalProcesses "<<system.TotalProcesses()<<std::endl;
