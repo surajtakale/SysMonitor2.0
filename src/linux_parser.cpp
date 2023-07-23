@@ -143,7 +143,8 @@ long LinuxParser::Jiffies() {
             jiffies += std::stol(tokens[i]);
         } catch (const std::exception& e) {
             std::cout <<"Error While computing jiffies"<< e.what() << std::endl;
-            return -1;
+            // return -1;
+            continue;
         }
     }
     return jiffies;
