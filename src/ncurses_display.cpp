@@ -28,20 +28,20 @@ std::string NCursesDisplay::ProgressBar(float percent) {
     display = " " + to_string(percent * 100).substr(0, 3);
   return result + " " + display + "/100%";
 }
-
-void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
+// void NCursesDisplay::DisplaySystem_old(System& system, WINDOW* window) {
+void DisplaySystem_old(System& system, WINDOW* window) {
   int row{0};
   mvwprintw(window, ++row, 2, ("OS: " + system.OperatingSystem()).c_str());
   mvwprintw(window, ++row, 2, ("Kernel: " + system.Kernel()).c_str());
   mvwprintw(window, ++row, 2, "CPU: ");
   wattron(window, COLOR_PAIR(1));
   mvwprintw(window, row, 10, "");
-  wprintw(window, ProgressBar(system.Cpu().Utilization()).c_str());
+  // wprintw(window, ProgressBar(system.Cpu().Utilization()).c_str());
   wattroff(window, COLOR_PAIR(1));
   mvwprintw(window, ++row, 2, "Memory: ");
   wattron(window, COLOR_PAIR(1));
   mvwprintw(window, row, 10, "");
-  wprintw(window, ProgressBar(system.MemoryUtilization()).c_str());
+  // wprintw(window, ProgressBar(system.MemoryUtilization()).c_str());
   wattroff(window, COLOR_PAIR(1));
   mvwprintw(window, ++row, 2,
             ("Total Processes: " + to_string(system.TotalProcesses())).c_str());
@@ -51,6 +51,46 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
   mvwprintw(window, ++row, 2,
             ("Up Time: " + Format::ElapsedTime(system.UpTime())).c_str());
   wrefresh(window);
+}
+void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
+  int row{0};
+  std::cout<<"inside dp sys"<<std::endl;
+  mvwprintw(window, ++row, 2, ("OS: " + system.OperatingSystem()).c_str());
+  std::cout<<"after os"<<std::endl;
+  mvwprintw(window, ++row, 2, ("Kernel: " + system.Kernel()).c_str());
+  std::cout<<"dsp system 1 after kernel"<<std::endl;
+  mvwprintw(window, ++row, 2, "CPU: ");
+  std::cout<<"dsp CPU: 1"<<std::endl;
+  wattron(window, COLOR_PAIR(1));
+  std::cout<<"dsp system 1 pair color"<<std::endl;
+  mvwprintw(window, row, 10, "");
+  std::cout<<"dsp system 10"<<std::endl;
+  wprintw(window, ProgressBar(system.Cpu().Utilization()).c_str());
+  std::cout<<"dsp system 1 progress bar"<<std::endl;
+  wattroff(window, COLOR_PAIR(1));
+  std::cout<<"dsp system 1 clocr pair 2"<<std::endl;
+  mvwprintw(window, ++row, 2, "Memory: ");
+  std::cout<<"dsp system 1 memorty "<<std::endl;
+  wattron(window, COLOR_PAIR(1));
+  std::cout<<"dsp system 1 color pair "<<std::endl;
+  mvwprintw(window, row, 10, "");
+  std::cout<<"dsp system 1 row 10"<<std::endl;
+  wprintw(window, ProgressBar(system.MemoryUtilization()).c_str());
+  std::cout<<"dsp system 1 memory utilization "<<std::endl;
+  wattroff(window, COLOR_PAIR(1));
+  std::cout<<"dsp system 1 color pair"<<std::endl;
+  mvwprintw(window, ++row, 2,
+            ("Total Processes: " + to_string(system.TotalProcesses())).c_str());
+            std::cout<<"dsp system 1 totoal processes "<<std::endl;
+  mvwprintw(
+      window, ++row, 2,
+      ("Running Processes: " + to_string(system.RunningProcesses())).c_str());
+      std::cout<<"dsp system 1 running processes"<<std::endl;
+  mvwprintw(window, ++row, 2,
+            ("Up Time: " + Format::ElapsedTime(system.UpTime())).c_str());
+      std::cout<<"dsp system 1 up time "<<std::endl;
+  wrefresh(window);
+  std::cout<<"dsp system 1 end display system"<<std::endl;
 }
 
 void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
