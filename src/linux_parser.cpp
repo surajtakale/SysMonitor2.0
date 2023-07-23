@@ -109,13 +109,13 @@ float LinuxParser::MemoryUtilization() {
     while (std::getline(meminfo, line)) {
       // std::cout<<line<<std::endl;
         if (line.find("MemTotal:") != std::string::npos) {
-          std::cout<<line<<std::endl;
+          // std::cout<<line<<std::endl;
             std::sscanf(line.c_str(), "MemTotal: %lf kB", &totalMemory);
-            std::cout<<"Mem Total:-  "<<totalMemory;
+            // std::cout<<"Mem Total:-  "<<totalMemory;
         }
         else if (line.find("MemAvailable:") != std::string::npos) {
             std::sscanf((convert_multiple_space_to_string(line.c_str())).c_str(), "MemAvailable: %lf kB", &freeMemory);
-            std::cout<<"mem available "<<line<<" fasdfasdfas  "<<freeMemory;
+            // std::cout<<"mem available "<<line<<" fasdfasdfas  "<<freeMemory;
             
         }
     }
@@ -126,9 +126,9 @@ float LinuxParser::MemoryUtilization() {
         // std::cout << "kdsjflkajflkjasdklfjlaksdjflkasjdlkfjaslkfjklasdjflkjsflkjaskldfjklasdjfkljasdklfjklasdjfas" << std::endl;
         return -1.0;
     }
-    std::cout<< "total memory: " << totalMemory << std::endl;
-    std::cout<< "free memory: " << freeMemory << std::endl;
-    std::cout<< "free memory: " << freeMemory << std::endl;
+    // std::cout<< "total memory: " << totalMemory << std::endl;
+    // std::cout<< "free memory: " << freeMemory << std::endl;
+    // std::cout<< "free memory: " << freeMemory << std::endl;
     float memoryUtilization = (totalMemory - freeMemory) / totalMemory ;
     return memoryUtilization;
 }
