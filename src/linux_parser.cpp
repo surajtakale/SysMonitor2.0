@@ -117,7 +117,7 @@ std::vector<std::string> splitString(const std::string& input, char delimiter) {
     std::string token;
 
     while (std::getline(stream, token, delimiter)) {
-      std::cout <<"curr token "<< token << std::endl;
+      // std::cout <<"curr token "<< token << std::endl;
         tokens.push_back(token);
     }
 
@@ -128,13 +128,13 @@ std::vector<std::string> splitString(const std::string& input, char delimiter) {
 long LinuxParser::Jiffies() {
       std::ifstream statFile(kProcDirectory + kStatFilename);
     if(!statFile.is_open()) {
-        std::cout<<"Couldn't open " << kProcDirectory + kStatFilename;
+        // std::cout<<"Couldn't open " << kProcDirectory + kStatFilename;
         return -1;
     }
     std::string line;
     std::getline(statFile, line);
     statFile.close();
-    std::cout<< "Follower: " << line << std::endl;
+    // std::cout<< "Follower: " << line << std::endl;
     std::vector<std::string> tokens = splitString(line, ' ');
     long jiffies = 0;
     for (size_t i = 1; i < tokens.size(); ++i) {
@@ -142,7 +142,7 @@ long LinuxParser::Jiffies() {
             std::cout << tokens[i] << std::endl;
             jiffies += std::stol(tokens[i]);
         } catch (const std::exception& e) {
-            std::cout <<"Error While computing jiffies"<< e.what() << std::endl;
+            // std::cout <<"Error While computing jiffies"<< e.what() << std::endl;
             // return -1;
             continue;
         }

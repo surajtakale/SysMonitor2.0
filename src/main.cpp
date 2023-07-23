@@ -18,5 +18,11 @@ int main() {
     std::cout<<process.User()<<std::endl;
     std::cout<<"________________________________________________________________"<<std::endl;
   }
-  std::cout<<"CPU "<<system.Cpu().Utilization()<<std::endl;
+  std::cout<<"CPU Utilization "<<system.Cpu().Utilization()<<std::endl;
+  std::cout<<"Kernel "<<system.Kernel()<<std::endl;
+  std::cout<<"MemoryUtilization "<<system.MemoryUtilization()<<std::endl;
+  std::cout<<"OperatingSystem "<<system.OperatingSystem()<<std::endl;
+  std::cout<<"Running Processes "<<system.RunningProcesses()<<std::endl;
+  std::cout<<"TotalProcesses "<<system.TotalProcesses()<<std::endl;
+  std::cout<<"UpTime "<<system.UpTime()<<std::endl;
 }
