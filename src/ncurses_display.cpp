@@ -98,17 +98,24 @@ void NCursesDisplay::Display(System& system, int n) {
   WINDOW* process_window =
       newwin(3 + n, x_max - 1, system_window->_maxy + 1, 0);
 
-  // while (1) {
+  while (1) {
+      std::cout<<"inside while"<<std::endl;
     init_pair(1, COLOR_BLUE, COLOR_BLACK);
+      std::cout<<"after init 1"<<std::endl;
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
+    std::cout<<"after init 2"<<std::endl;
     box(system_window, 0, 0);
+    std::cout<<"box1"<<std::endl;
     box(process_window, 0, 0);
+    std::cout<<"box2"<<std::endl;
     DisplaySystem(system, system_window);
+    std::cout<<"dsp system 1"<<std::endl;
     DisplayProcesses(system.Processes(), process_window, n);
+    std::cout<<"dsp process 2"<<std::endl;
     wrefresh(system_window);
     wrefresh(process_window);
     refresh();
     std::this_thread::sleep_for(std::chrono::seconds(1));
-  // }
+  }
   endwin();
 }
