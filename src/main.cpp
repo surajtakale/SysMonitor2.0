@@ -18,5 +18,5 @@ int main() {
     std::cout<<process.User()<<std::endl;
     std::cout<<"________________________________________________________________"<<std::endl;
   }
-  std::cout<<"CPU "<<system.Cpu().Utilization();
+  std::cout<<"CPU "<<system.Cpu().Utilization()<<std::endl;
 }
