@@ -117,6 +117,7 @@ std::vector<std::string> splitString(const std::string& input, char delimiter) {
     std::string token;
 
     while (std::getline(stream, token, delimiter)) {
+      std::cout <<"curr token "<< token << std::endl;
         tokens.push_back(token);
     }
 
