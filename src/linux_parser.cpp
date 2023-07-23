@@ -133,7 +133,7 @@ long LinuxParser::Jiffies() {
     std::string line;
     std::getline(statFile, line);
     statFile.close();
-
+    std::cout<< "Follower: " << line << std::endl;
     std::vector<std::string> tokens = splitString(line, ' ');
     long jiffies = 0;
     for (size_t i = 1; i < tokens.size(); ++i) {
