@@ -77,6 +77,7 @@ float LinuxParser::MemoryUtilization() {
     float freeMemory = 0.0;
 
     while (std::getline(meminfo, line)) {
+      std::cout<<line<<std::endl;
         if (line.find("MemTotal:") != std::string::npos) {
             std::sscanf(line.c_str(), "MemTotal: %lf kB", &totalMemory);
         }
