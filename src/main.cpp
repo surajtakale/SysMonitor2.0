@@ -9,6 +9,13 @@ int main() {
   // std::cout<<system.Kernel();
   // NCursesDisplay::Display(system);
   for (int i=0; i < system.Processes().size(); i++){
-    std::cout<<system.Processes()[i].Command();
+    auto process = system.Processes()[i];
+    std::cout<<process.Command()<<std::endl;
+    std::cout<<process.CpuUtilization()<<std::endl;
+    std::cout<<process.Pid()<<std::endl;
+    std::cout<<process.Ram()<<std::endl;
+    std::cout<<process.UpTime()<<std::endl;
+    std::cout<<process.User()<<std::endl;
+    std::cout<<"________________________________________________________________"<<std::endl;
   }
 }
