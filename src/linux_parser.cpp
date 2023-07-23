@@ -92,6 +92,8 @@ float LinuxParser::MemoryUtilization() {
         std::cout << "kdsjflkajflkjasdklfjlaksdjflkasjdlkfjaslkfjklasdjflkjsflkjaskldfjklasdjfkljasdklfjklasdjfas" << std::endl;
         return -1.0;
     }
+    std::cout<< "total memory: " << totalMemory << std::endl;
+    std::cout<< "free memory: " << freeMemory << std::endl;
 
     float memoryUtilization = (totalMemory - freeMemory) / totalMemory ;
     return memoryUtilization;
