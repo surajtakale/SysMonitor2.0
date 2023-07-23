@@ -54,46 +54,46 @@ void DisplaySystem_old(System& system, WINDOW* window) {
 }
 void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
   int row{0};
-  std::cout<<"inside dp sys"<<std::endl;
+  // std::cout<<"inside dp sys"<<std::endl;
   mvwprintw(window, ++row, 2, ("OS: " + system.OperatingSystem()).c_str());
-  std::cout<<"after os"<<std::endl;
+  // std::cout<<"after os"<<std::endl;
   mvwprintw(window, ++row, 2, ("Kernel: " + system.Kernel()).c_str());
-  std::cout<<"dsp system 1 after kernel"<<std::endl;
+  // std::cout<<"dsp system 1 after kernel"<<std::endl;
   mvwprintw(window, ++row, 2, "CPU: ");
-  std::cout<<"dsp CPU: 1"<<std::endl;
+  // std::cout<<"dsp CPU: 1"<<std::endl;
   wattron(window, COLOR_PAIR(1));
-  std::cout<<"dsp system 1 pair color"<<std::endl;
+  // std::cout<<"dsp system 1 pair color"<<std::endl;
   mvwprintw(window, row, 10, "");
-  std::cout<<"dsp system 10"<<std::endl;
+  // std::cout<<"dsp system 10"<<std::endl;
   wprintw(window, ProgressBar(system.Cpu().Utilization()).c_str());
-  std::cout<<"dsp system 1 progress bar"<<std::endl;
+  // std::cout<<"dsp system 1 progress bar"<<std::endl;
   wattroff(window, COLOR_PAIR(1));
-  std::cout<<"dsp system 1 clocr pair 2"<<std::endl;
+  // std::cout<<"dsp system 1 clocr pair 2"<<std::endl;
   mvwprintw(window, ++row, 2, "Memory: ");
-  std::cout<<"dsp system 1 memorty "<<std::endl;
+  // std::cout<<"dsp system 1 memorty "<<std::endl;
   wattron(window, COLOR_PAIR(1));
-  std::cout<<"dsp system 1 color pair "<<std::endl;
+  // std::cout<<"dsp system 1 color pair "<<std::endl;
   mvwprintw(window, row, 10, "");
-  std::cout<<"dsp system 1 row 10"<<std::endl;
+  // std::cout<<"dsp system 1 row 10"<<std::endl;
   wprintw(window, ProgressBar(system.MemoryUtilization()).c_str());
-  std::cout<<"dsp system 1 memory utilization "<<std::endl;
+  // std::cout<<"dsp system 1 memory utilization "<<std::endl;
   wattroff(window, COLOR_PAIR(1));
-  std::cout<<"dsp system 1 color pair"<<std::endl;
+  // std::cout<<"dsp system 1 color pair"<<std::endl;
   mvwprintw(window, ++row, 2,
             ("Total Processes: " + to_string(system.TotalProcesses())).c_str());
-            std::cout<<"dsp system 1 totoal processes "<<std::endl;
+            // std::cout<<"dsp system 1 totoal processes "<<std::endl;
   mvwprintw(
       window, ++row, 2,
       ("Running Processes: " + to_string(system.RunningProcesses())).c_str());
-      std::cout<<"dsp system 1 running processes"<<std::endl;
-      std::cout<<"vefore uptime "<<std::endl;
+      // std::cout<<"dsp system 1 running processes"<<std::endl;
+      // std::cout<<"vefore uptime "<<std::endl;
       auto uptime = system.UpTime();
-      std::cout<<"after uptime "<<uptime<<std::endl;
+      // std::cout<<"after uptime "<<uptime<<std::endl;
   mvwprintw(window, ++row, 2,
             ("Up Time: " + Format::ElapsedTime(uptime)).c_str());
-      std::cout<<"dsp system 1 up time "<<std::endl;
+      // std::cout<<"dsp system 1 up time "<<std::endl;
   wrefresh(window);
-  std::cout<<"dsp system 1 end display system"<<std::endl;
+  // std::cout<<"dsp system 1 end display system"<<std::endl;
 }
 
 void NCursesDisplay::DisplayProcesses(std::vector<Process>& processes,
@@ -142,19 +142,19 @@ void NCursesDisplay::Display(System& system, int n) {
       newwin(3 + n, x_max - 1, system_window->_maxy + 1, 0);
 
   while (1) {
-      std::cout<<"inside while"<<std::endl;
+      // std::cout<<"inside while"<<std::endl;
     init_pair(1, COLOR_BLUE, COLOR_BLACK);
-      std::cout<<"after init 1"<<std::endl;
+      // std::cout<<"after init 1"<<std::endl;
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
-    std::cout<<"after init 2"<<std::endl;
+    // std::cout<<"after init 2"<<std::endl;
     box(system_window, 0, 0);
-    std::cout<<"box1"<<std::endl;
+    // std::cout<<"box1"<<std::endl;
     box(process_window, 0, 0);
-    std::cout<<"box2"<<std::endl;
+    // std::cout<<"box2"<<std::endl;
     DisplaySystem(system, system_window);
-    std::cout<<"dsp system 1"<<std::endl;
+    // std::cout<<"dsp system 1"<<std::endl;
     DisplayProcesses(system.Processes(), process_window, n);
-    std::cout<<"dsp process 2"<<std::endl;
+    // std::cout<<"dsp process 2"<<std::endl;
     wrefresh(system_window);
     wrefresh(process_window);
     refresh();

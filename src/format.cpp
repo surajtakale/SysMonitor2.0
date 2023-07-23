@@ -42,8 +42,7 @@ string Format::ElapsedTime(long sec) {
   ss = sec % 60;
   mm = (sec / 60) % 60;
   hh = (sec / 3600) % 100;
-
-  op << std::setfill('0') << std::setw(2) << hh << ":" << std::setfill('0') << std::setw(2) << mm << ":" << std::setfill('0') << std::setw(2) << ss;
+    op << std::setfill('0') << std::setw(2) << hh << ":" << std::setfill('0') << std::setw(2) << mm << ":" << std::setfill('0') << std::setw(2) << ss;
   std::string str_format = op.str(); 
   
   return str_format;
