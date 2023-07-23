@@ -92,7 +92,7 @@ float LinuxParser::MemoryUtilization() {
         return -1.0;
     }
 
-    float memoryUtilization = (totalMemory - freeMemory) / totalMemory * 100.0;
+    float memoryUtilization = (totalMemory - freeMemory) / totalMemory ;
     return memoryUtilization;
 }
 
