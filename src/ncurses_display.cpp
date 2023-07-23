@@ -135,7 +135,7 @@ void NCursesDisplay::Display(System& system, int n) {
   noecho();       // do not print input values
   cbreak();       // terminate ncurses on ctrl + c
   start_color();  // enable color
-  std::cout<<"inside display";
+  // std::cout<<"inside display";
   int x_max{getmaxx(stdscr)};
   WINDOW* system_window = newwin(9, x_max - 1, 0, 0);
   WINDOW* process_window =
