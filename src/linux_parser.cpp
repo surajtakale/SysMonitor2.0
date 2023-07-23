@@ -141,7 +141,7 @@ long LinuxParser::Jiffies() {
     long jiffies = 0;
     for (size_t i = 1; i < tokens.size(); ++i) {
         try {
-            std::cout << tokens[i] << std::endl;
+            // std::cout << tokens[i] << std::endl;
             jiffies += std::stol(tokens[i]);
         } catch (const std::exception& e) {
             // std::cout <<"Error While computing jiffies"<< e.what() << std::endl;
