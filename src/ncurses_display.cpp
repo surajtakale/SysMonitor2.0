@@ -86,8 +86,11 @@ void NCursesDisplay::DisplaySystem(System& system, WINDOW* window) {
       window, ++row, 2,
       ("Running Processes: " + to_string(system.RunningProcesses())).c_str());
       std::cout<<"dsp system 1 running processes"<<std::endl;
+      std::cout<<"vefore uptime "<<std::endl;
+      auto uptime = system.UpTime();
+      std::cout<<"after uptime "<<uptime<<std::endl;
   mvwprintw(window, ++row, 2,
-            ("Up Time: " + Format::ElapsedTime(system.UpTime())).c_str());
+            ("Up Time: " + Format::ElapsedTime(uptime)).c_str());
       std::cout<<"dsp system 1 up time "<<std::endl;
   wrefresh(window);
   std::cout<<"dsp system 1 end display system"<<std::endl;
