@@ -49,5 +49,5 @@ int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO: Return the number of seconds since the system started running
 long int System::UpTime() { 
-    std::cout"dsp system 1 running processes"<<std::endl;
+    std::cout<<"dsp system 1 running processes"<<std::endl;
     return LinuxParser::UpTime(); }
