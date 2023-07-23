@@ -120,11 +120,11 @@ float LinuxParser::MemoryUtilization() {
     meminfo.close();
 
     if (totalMemory == 0.0 || freeMemory == 0.0) {
-        std::cout << "kdsjflkajflkjasdklfjlaksdjflkasjdlkfjaslkfjklasdjflkjsflkjaskldfjklasdjfkljasdklfjklasdjfas" << std::endl;
+        // std::cout << "kdsjflkajflkjasdklfjlaksdjflkasjdlkfjaslkfjklasdjflkjsflkjaskldfjklasdjfkljasdklfjklasdjfas" << std::endl;
         return -1.0;
     }
-    std::cout<< "total memory: " << totalMemory << std::endl;
-    std::cout<< "free memory: " << freeMemory << std::endl;
+    // std::cout<< "total memory: " << totalMemory << std::endl;
+    // std::cout<< "free memory: " << freeMemory << std::endl;
 
     float memoryUtilization = (totalMemory - freeMemory) / totalMemory ;
     return memoryUtilization;
