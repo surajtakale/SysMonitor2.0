@@ -8,6 +8,7 @@
 #include "processor.h"
 #include "system.h"
 #include "linux_parser.h"
+#include "iostream"
 
 using std::set;
 using std::size_t;
@@ -47,4 +48,6 @@ int System::RunningProcesses() { return LinuxParser::RunningProcesses(); }
 int System::TotalProcesses() { return LinuxParser::TotalProcesses(); }
 
 // TODO: Return the number of seconds since the system started running
-long int System::UpTime() { return LinuxParser::UpTime(); }
+long int System::UpTime() { 
+    std::cout"dsp system 1 running processes"<<std::endl;
+    return LinuxParser::UpTime(); }
