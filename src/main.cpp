@@ -6,6 +6,6 @@
 int main() {
   System system;
   std::cout<<"Welcome to the Curses Display";
-  std::cout<<system.Kernel();
-  // NCursesDisplay::Display(system);
+  // std::cout<<system.Kernel();
+  NCursesDisplay::Display(system);
 }
