@@ -96,7 +96,7 @@ std::string convert_multiple_space_to_string(const std::string str){
         //concatenate the character to the new string
         nstr += str[i++];
     }
-    std::cout<<"fjklasjlkfalskflksjfkljskldfjklsdjflkjsdklfkldjflksjdklfjsklfjklsjflksdjflkjslkfjskldfjlskdjfklsjfklsjdklfjskldjfkl      "<<nstr<<std::endl;
+    // std::cout<<"fjklasjlkfalskflksjfkljskldfjklsdjflkjsdklfkldjflksjdklfjsklfjklsjflksdjflkjslkfjskldfjlskdjfklsjfklsjdklfjskldjfkl      "<<nstr<<std::endl;
     return nstr;
 }
 // TODO: Read and return the system memory utilization
@@ -107,7 +107,7 @@ float LinuxParser::MemoryUtilization() {
     float freeMemory = 0.0;
 
     while (std::getline(meminfo, line)) {
-      std::cout<<line<<std::endl;
+      // std::cout<<line<<std::endl;
         if (line.find("MemTotal:") != std::string::npos) {
             std::sscanf(line.c_str(), "MemTotal: %lf kB", &totalMemory);
         }
