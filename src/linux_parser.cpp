@@ -69,6 +69,36 @@ vector<int> LinuxParser::Pids() {
   return pids;
 }
 
+std::string convert_multiple_space_to_string(const std::string str){
+  string nstr;
+    
+    //loop through the characters of the input string
+    for(int i=0; i<str.length();  ){
+        //check if character is white space
+        if(str[i] == ' '){
+            /* 
+              *do not include the white space, if-
+              *it is at the trailing or leading position
+            */
+            if(i==0 || i==str.length()-1){
+                i++;
+                continue;
+            }
+            
+            /*
+              *if space is inbetween then skip it-
+              *except the last occurrence
+            */
+            while(str[i+1] == ' ')
+                i++;
+        }
+        
+        //concatenate the character to the new string
+        nstr += str[i++];
+    }
+    std::cout<<"fjklasjlkfalskflksjfkljskldfjklsdjflkjsdklfkldjflksjdklfjsklfjklsjflksdjflkjslkfjskldfjlskdjfklsjfklsjdklfjskldjfkl      "<<nstr<<std::endl;
+    return nstr;
+}
 // TODO: Read and return the system memory utilization
 float LinuxParser::MemoryUtilization() {
     std::ifstream meminfo(kProcDirectory + kMeminfoFilename);
@@ -82,7 +112,8 @@ float LinuxParser::MemoryUtilization() {
             std::sscanf(line.c_str(), "MemTotal: %lf kB", &totalMemory);
         }
         else if (line.find("MemAvailable:") != std::string::npos) {
-            std::sscanf(line.c_str(), "MemAvailable: %lf kB", &freeMemory);
+            std::sscanf((convert_multiple_space_to_string(line.c_str())).c_str(), "MemAvailable: %lf kB", &freeMemory);
+            
         }
     }
 
