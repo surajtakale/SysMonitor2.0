@@ -103,8 +103,8 @@ std::string convert_multiple_space_to_string(const std::string str){
 float LinuxParser::MemoryUtilization() {
     std::ifstream meminfo(kProcDirectory + kMeminfoFilename);
     std::string line;
-    float totalMemory = 0.0;
-    float freeMemory = 0.0;
+    double totalMemory = 0.0;
+    double freeMemory = 0.0;
 
     while (std::getline(meminfo, line)) {
       // std::cout<<line<<std::endl;
