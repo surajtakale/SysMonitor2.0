@@ -408,20 +408,45 @@ string LinuxParser::Ram(int pid) {
         return "-1";
     }
 
-    long long  memoryUsage = -1;
-    std::string line;
-    std::getline(statmFile, line);
-    statmFile.close();
+    // long long  memoryUsage = -1;
+    // std::string line;
+    // std::getline(statmFile, line);
+    // statmFile.close();
 
-    std::istringstream iss(line);
-    if (iss >> memoryUsage) {
-        long long pageSizeInMB = sysconf(_SC_PAGESIZE) / (1024 * 1024); 
-        memoryUsage *= pageSizeInMB;
-    } else {
-        return "-1";
+    // std::istringstream iss(line);
+    // if (iss >> memoryUsage) {
+    //     long long pageSizeInMB = sysconf(_SC_PAGESIZE) / (1024 * 1024); 
+    //     // double memory_usage_in_mb = static_cast<double>(memory_usage) / (1024 * 1024);
+    //     memoryUsage *= pageSizeInMB;
+    // } else {
+    //     return "-1";
+    // }
+
+    // return std::to_string(memoryUsage); 
+    
+    // Read the memory usage from the file
+    long long memory_usage = -1;
+    std::string line;
+    if (std::getline(statmFile, line)) {
+        std::istringstream iss(line);
+        iss >> memory_usage;
     }
 
-    return std::to_string(memoryUsage); }
+    // Close the file
+    statmFile.close();
+
+    // Memory usage is in pages, so convert to bytes
+    long long page_size = sysconf(_SC_PAGESIZE);
+    if (page_size > 0) {
+        memory_usage *= page_size;
+    }
+
+    // Convert bytes to megabytes
+    double memory_usage_in_mb = static_cast<double>(memory_usage) / (1024 * 1024);
+
+    return std::to_string(memory_usage_in_mb);
+
+    }
 
 // TODO: Read and return the user ID associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
