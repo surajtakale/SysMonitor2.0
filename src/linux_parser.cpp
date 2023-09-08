@@ -559,7 +559,7 @@ long LinuxParser::UpTime(int pid) {
         // Tokenize the content to extract the required fields
         std::istringstream iss(line);
         std::string token;
-        long long uptime = 0;
+        long uptime = 0;
 
         // Iterate through the tokens to extract the fields
         for (int i = 0; i < 22; ++i) {
@@ -575,7 +575,7 @@ long LinuxParser::UpTime(int pid) {
         statFile.close();
 
         // Calculate uptime in seconds
-        long long clock_ticks_per_second = sysconf(_SC_CLK_TCK);
+        long clock_ticks_per_second = sysconf(_SC_CLK_TCK);
         if (clock_ticks_per_second > 0) {
             return uptime / clock_ticks_per_second;
         }
