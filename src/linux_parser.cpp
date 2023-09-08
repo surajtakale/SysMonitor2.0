@@ -558,35 +558,28 @@ long LinuxParser::UpTime(int pid) {
     // Read the contents of the /proc/<pid>/stat file
     std::string line;
     if (std::getline(statFile, line)) {
-        // Tokenize the content to extract the required fields
         std::istringstream iss(line);
         std::string token;
         long long starttime = 0;
 
-        // Iterate through the tokens to extract the fields
         for (int i = 0; i < 22; ++i) {
             iss >> token;
             if (i == 21) {
-                // Field 22 represents process start time in clock ticks
                 starttime = std::stoll(token);
                 break;
             }
         }
 
-        // Close the file
         statFile.close();
 
-        // Get the current time
         time_t current_time = time(nullptr);
 
-        // Calculate the uptime in seconds
         if (starttime > 0) {
             long long uptime_seconds = current_time - (starttime / sysconf(_SC_CLK_TCK));
             return uptime_seconds;
         }
     }
 
-    // Close the file
     statFile.close();
 
     return -1;
