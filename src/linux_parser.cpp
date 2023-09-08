@@ -7,6 +7,7 @@
 #include <chrono>
 #include "linux_parser.h"
 #include "iostream"
+#include <ctime>
 
 using std::stof;
 using std::string;
@@ -554,19 +555,20 @@ long LinuxParser::UpTime(int pid) {
 
     // return uptime;
     // Read the contents of the /proc/<pid>/stat file
+    // Read the contents of the /proc/<pid>/stat file
     std::string line;
     if (std::getline(statFile, line)) {
         // Tokenize the content to extract the required fields
         std::istringstream iss(line);
         std::string token;
-        long uptime = 0;
+        long long starttime = 0;
 
         // Iterate through the tokens to extract the fields
         for (int i = 0; i < 22; ++i) {
             iss >> token;
             if (i == 21) {
                 // Field 22 represents process start time in clock ticks
-                uptime = std::stoll(token);
+                starttime = std::stoll(token);
                 break;
             }
         }
@@ -574,15 +576,18 @@ long LinuxParser::UpTime(int pid) {
         // Close the file
         statFile.close();
 
-        // Calculate uptime in seconds
-        long clock_ticks_per_second = sysconf(_SC_CLK_TCK);
-        if (clock_ticks_per_second > 0) {
-            return uptime / clock_ticks_per_second;
+        // Get the current time
+        time_t current_time = time(nullptr);
+
+        // Calculate the uptime in seconds
+        if (starttime > 0) {
+            long long uptime_seconds = current_time - (starttime / sysconf(_SC_CLK_TCK));
+            return uptime_seconds;
         }
     }
 
     // Close the file
     statFile.close();
 
-    return -1; 
+    return -1;
  }
