@@ -73,7 +73,7 @@ std::string convert_multiple_space_to_string(const std::string str){
   string nstr;
     
     //loop through the characters of the input string
-    for(int i=0; i<str.length();  ){
+    for(unsigned int i=0; i<str.length();  ){
         //check if character is white space
         if(str[i] == ' '){
             /* 
