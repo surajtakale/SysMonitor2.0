@@ -408,15 +408,15 @@ string LinuxParser::Ram(int pid) {
         return "-1";
     }
 
-    long  memoryUsage = -1;
+    long long  memoryUsage = -1;
     std::string line;
     std::getline(statmFile, line);
     statmFile.close();
 
     std::istringstream iss(line);
     if (iss >> memoryUsage) {
-        long pageSizeInKB = sysconf(_SC_PAGESIZE) / 1024; 
-        memoryUsage *= pageSizeInKB;
+        long long pageSizeInMB = sysconf(_SC_PAGESIZE) / (1024 * 1024); 
+        memoryUsage *= pageSizeInMB;
     } else {
         return "-1";
     }
