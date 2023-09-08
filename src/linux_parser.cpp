@@ -526,31 +526,63 @@ string LinuxParser::User(int pid) {
 long LinuxParser::UpTime(int pid) { 
   // std::cout<<"Inside UPTIME Calculation in linux"<<std::endl;
 
-      std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
+    //   std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
 
     std::ifstream statFile(kProcDirectory + std::to_string(pid) + kStatFilename);
     if (!statFile.is_open()) {
         return -1;
     }
 
+    // std::string line;
+    // std::getline(statFile, line);
+    // statFile.close();
+
+    // std::istringstream iss(line);
+    // std::string field;
+    // for (int i = 1; i <= 21; ++i) { 
+    //     iss >> field;
+    // }
+
+    // unsigned long long int starttime;
+    // if (!(iss >> starttime)) {
+    //     return -1;
+    // }
+
+    // long clockTicksPerSecond = sysconf(_SC_CLK_TCK);
+
+    // double uptime = static_cast<double>(currentTime.time_since_epoch().count()) / static_cast<double>(clockTicksPerSecond) - static_cast<double>(starttime) / static_cast<double>(clockTicksPerSecond);
+
+    // return uptime;
+    // Read the contents of the /proc/<pid>/stat file
     std::string line;
-    std::getline(statFile, line);
+    if (std::getline(statFile, line)) {
+        // Tokenize the content to extract the required fields
+        std::istringstream iss(line);
+        std::string token;
+        long long uptime = 0;
+
+        // Iterate through the tokens to extract the fields
+        for (int i = 0; i < 22; ++i) {
+            iss >> token;
+            if (i == 21) {
+                // Field 22 represents process start time in clock ticks
+                uptime = std::stoll(token);
+                break;
+            }
+        }
+
+        // Close the file
+        statFile.close();
+
+        // Calculate uptime in seconds
+        long long clock_ticks_per_second = sysconf(_SC_CLK_TCK);
+        if (clock_ticks_per_second > 0) {
+            return uptime / clock_ticks_per_second;
+        }
+    }
+
+    // Close the file
     statFile.close();
 
-    std::istringstream iss(line);
-    std::string field;
-    for (int i = 1; i <= 21; ++i) { 
-        iss >> field;
-    }
-
-    unsigned long long int starttime;
-    if (!(iss >> starttime)) {
-        return -1;
-    }
-
-    long clockTicksPerSecond = sysconf(_SC_CLK_TCK);
-
-    double uptime = static_cast<double>(currentTime.time_since_epoch().count()) / static_cast<double>(clockTicksPerSecond) - static_cast<double>(starttime) / static_cast<double>(clockTicksPerSecond);
-
-    return uptime;
+    return -1; 
  }
