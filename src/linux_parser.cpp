@@ -444,7 +444,7 @@ string LinuxParser::Ram(int pid) {
     // Convert bytes to megabytes
     double memory_usage_in_mb = static_cast<double>(memory_usage) / (1024 * 1024);
 
-    return std::to_string(memory_usage_in_mb);
+    return std::to_string(static_cast<int>(memory_usage_in_mb));
 
     }
 
